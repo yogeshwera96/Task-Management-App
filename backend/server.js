@@ -4,9 +4,12 @@ const express = require("express")
 const app = express()
 const tasksRoutes = require("./routes/tasksRoutes")
 const mongoose = require("mongoose")
+const cors = require("cors")
 
 //middleware to parse the request body
 app.use(express.json())
+
+app.use(cors())
 
 app.use("/tasks", tasksRoutes)
 
