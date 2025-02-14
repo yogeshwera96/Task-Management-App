@@ -5,11 +5,10 @@ const app = express()
 const tasksRoutes = require("./routes/tasksRoutes")
 const mongoose = require("mongoose")
 
-app.use("/tasks", tasksRoutes)
+//middleware to parse the request body
+app.use(express.json())
 
-app.get("/", (req, res) => {
-  res.send("<h1> Testing server</h1>")
-})
+app.use("/tasks", tasksRoutes)
 
 mongoose
   .connect(process.env.MONGO_URI)
