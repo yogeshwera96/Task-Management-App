@@ -1,13 +1,23 @@
 import axios from "axios"
 import "../App.css"
-import { useEffect } from "react"
 
-const Task = ({ title, description, status, _id, tasks, setTasks }) => {
+const Task = ({
+  title,
+  description,
+  status,
+  _id,
+  tasks,
+  setTasks,
+  notification,
+  setNotification,
+}) => {
   async function handleDelete() {
     try {
       const response = await axios.delete(`http://localhost:3001/tasks/${_id}`)
       console.log("Task deleted", response.data)
       setTasks(tasks.filter((task) => task._id !== _id))
+      setNotification({ message: "Task deleted successfully!", type: "delete" })
+      setTimeout(() => setNotification(""), 3000)
     } catch (error) {
       console.error(
         "Error deleting task: ",

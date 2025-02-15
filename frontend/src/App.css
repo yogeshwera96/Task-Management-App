@@ -58,7 +58,41 @@ body {
   button:hover {
     background: #0056b3;
   }
+
+  button:disabled{
+    background-color: gray;
+    cursor: not-allowed;
+  }
+  button:disabled:hover{
+    background-color: gray;
+  }
   
+  .notification-popup{
+    position: fixed;
+    width: 200px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transition: opacity 0.5 ease-in-out;
+  }
+
+  .notification-popup.create {
+    background-color: #4caf50;
+  }
+
+  .notification-popup.delete {
+    background-color: #f44336;
+  }
+
+
+  .notification-popup.fade-out{
+    opacity: 0;
+  }
 
   h1 {
     text-align: center;

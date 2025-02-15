@@ -11,10 +11,16 @@ function App() {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-
+  const [notification, setNotification] = useState(null)
   //Todo - add notification when task is added successfully
   async function handleFormSubmit(e) {
     e.preventDefault()
+
+    if (!title.trim() || !description.trim()) {
+      alert("Title and Description are required!")
+      return
+    }
+
     try {
       const response = await axios.post("http://localhost:3001/tasks", {
         title,
@@ -23,6 +29,8 @@ function App() {
       })
       console.log("Task Created: ", response.data)
       setTasks([...tasks, response.data])
+      setNotification({message: "Task added successfully!", type: "create"})
+      setTimeout(() => setNotification(""), 3000)
       setTitle("")
       setDescription("")
       setStatus("pending")
@@ -71,9 +79,11 @@ function App() {
           <option value={"pending"}>Pending</option>
           <option value={"completed"}>Completed</option>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!title.trim() || !description.trim()}>
+          Submit
+        </button>
       </form>
-
+      {notification && <div className={`notification-popup ${notification.type}`}>{notification.message}</div>}
       <h1>Task List</h1>
       <div className="list">
         {tasks.map((task) => (
@@ -85,6 +95,8 @@ function App() {
             _id={task._id}
             tasks={tasks}
             setTasks={setTasks}
+            notification={notification}
+            setNotification={setNotification}
           />
         ))}
       </div>
