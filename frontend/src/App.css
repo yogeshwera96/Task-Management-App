@@ -1,209 +1,240 @@
-
+/* General Styles */
 body {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: #f8b7b7;
-    margin: 0;
-    padding: 0;
-    display: flex;
-   
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+  font-family: 'Arial', sans-serif;
+  background: #121212; /* Dark background */
+  margin: 0;
+  padding: 0;
+  color: #e0e0e0; /* Light text for contrast */
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff; /* Fallback color for unsupported browsers */
+  margin-top: 20px;
+  font-size: 2.5rem;
+  animation: fadeIn 1s ease-in-out;
+  background: linear-gradient(45deg, #6c5ce7, #00b894); /* Gradient background */
   
-
+  /* Standard property with fallback */
+  background-clip: text; /* Standard property */
+  -webkit-background-clip: text; /* WebKit prefix for older browsers */
+  -webkit-text-fill-color: transparent; /* Make text transparent */
   
-  form {
-    background-color: rgb(191, 235, 103);
-    display: flex;
-    width: 700px;
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;
-    align-items: center;
-    gap: 20px;
-    
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  }
-   
-  input,
-  textarea,
-  select {
-    width: 100%;
-    height: 50px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 20px;
-  }
-  
-  textarea {
-    min-height: 80px;
-    
-  }
-  
-  button {
-    width: 150px;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  button:hover {
-    background: #0056b3;
-  }
+  text-shadow: 0 0 10px rgba(108, 92, 231, 0.7), 0 0 20px rgba(0, 184, 148, 0.7); /* Glowing shadow */
+}
 
-  button:disabled{
-    background-color: gray;
-    cursor: not-allowed;
-  }
-  button:disabled:hover{
-    background-color: gray;
-  }
-  
-  .notification-popup{
-    position: fixed;
-    width: 200px;
-    height: 50px;
-    top: 20px;
-    right: 20px;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    transition: opacity 0.5 ease-in-out;
-  }
-
-  .notification-popup.create {
-    background-color: #4caf50;
-  }
-
-  .notification-popup.delete {
-    background-color: #f44336;
-  }
-
-
-  .notification-popup.fade-out{
-    opacity: 0;
-  }
-
+/* Fallback for browsers that don't support background-clip: text */
+@supports not (background-clip: text) {
   h1 {
-    text-align: center;
-    margin-top: 20px;
-    word-spacing: 10px;
-    
+    color: #6c5ce7; /* Fallback color (first color of the gradient) */
+    text-shadow: none; /* Remove shadow for fallback */
   }
-  
- 
-  .list{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    }
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  padding: 25px;
+  background: #1e1e1e; /* Dark form background */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  animation: slideIn 0.8s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #333; /* Dark border */
+  border-radius: 8px;
+  font-size: 16px;
+  background: #2c2c2c; /* Dark input background */
+  color: #e0e0e0; /* Light text */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #6c5ce7; /* Neon purple for focus */
+  box-shadow: 0 0 8px rgba(108, 92, 231, 0.5);
+  outline: none;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: #6c5ce7; /* Neon purple */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:disabled {
+  background-color: #444; /* Darker shade for disabled */
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #5a4fcf; /* Darker purple on hover */
+  transform: scale(1.05);
+}
+
+.notification-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  z-index: 1000;
+  animation: slideInRight 0.5s ease-in-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.notification-popup.create {
+  background-color: #00b894; /* Neon green for success */
+}
+
+.notification-popup.delete {
+  background-color: #d63031; /* Neon red for delete */
+}
+
+/* Task List Styles */
 .list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  margin: 15px 0;
+  background: #1e1e1e; /* Dark task background */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+.task:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  
-  .task {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
- 
-  .task h2,
-  .task p {
-    margin: 5px 0;
-    padding: 10px;
-    font-size: 20px;
-    color: #333;
-  }
-  .status{
-    color: #0056b3;
-  }
-  
-  .task h2 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .task h3 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  
-  .task h3.pending {
-    color: red;
-  }
-  
-  
-  .task h3.completed {
-    color: green;
-  }
-  
- 
-  .task button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-    margin-left: 10px;
-  }
-  
-  .task button:first-child {
-    background-color: green;
-    color: white;
-  }
-  
-  .task button:first-child:hover {
-    background-color: darkgreen;
-  }
-  
-  .task button:last-child {
-    background-color: red;
-    color: white;
-  }
-  
-  .task button:last-child:hover {
-    background-color: darkred;
-  }
-  
- 
-  .task {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
- 
-  .task div:first-child {
-    flex: 1;
-    text-align: left;
-  }
-  
-  
-  .task div:last-child {
-    display: flex;
-    gap: 10px;
-  }
-  
+}
+
+.task-content {
+  flex: 1;
+}
+
+.task-content h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ffffff; /* White for task title */
+}
+
+.task-content p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #b0b0b0; /* Light gray for description */
+}
+
+.task-content h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.task-content h3.pending {
+  color: #e17055; /* Orange for pending */
+}
+
+.task-content h3.completed {
+  color: #00b894; /* Neon green for completed */
+}
+
+.task-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.task-actions button {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.task-actions button:first-child {
+  background-color: #00b894; /* Neon green for complete */
+  color: white;
+}
+
+.task-actions button:first-child:hover {
+  background-color: #00a383; /* Darker green on hover */
+  transform: scale(1.05);
+}
+
+.task-actions button:last-child {
+  background-color: #d63031; /* Neon red for delete */
+  color: white;
+}
+
+.task-actions button:last-child:hover {
+  background-color: #c23616; /* Darker red on hover */
+  transform: scale(1.05);
+}
