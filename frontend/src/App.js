@@ -2,6 +2,7 @@ import "./App.css"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Task from "./components/Task"
+import "./App.css"
 
 function App() {
   const [title, setTitle] = useState("")
@@ -11,14 +12,20 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  //Todo - add notification when task is added successfully
   async function handleFormSubmit(e) {
+    e.preventDefault()
     try {
       const response = await axios.post("http://localhost:3001/tasks", {
         title,
         description,
         status,
       })
-      console.log("Task Created: ".response.data)
+      console.log("Task Created: ", response.data)
+      setTasks([...tasks, response.data])
+      setTitle("")
+      setDescription("")
+      setStatus("pending")
     } catch (error) {
       console.log(
         "Error creating task: ",
@@ -47,7 +54,8 @@ function App() {
   if (error) return <p>Error: {error} </p>
 
   return (
-    <div>
+    <div className="">
+      <h1>WELCOME TO THE TASK MANAGEMENT SYSTEM</h1>
       <form onSubmit={(e) => handleFormSubmit(e)}>
         <input
           placeholder="Title..."
@@ -67,14 +75,19 @@ function App() {
       </form>
 
       <h1>Task List</h1>
-      {tasks.map((task) => (
-        <Task
-          key={task._id}
-          title={task.title}
-          description={task.description}
-          status={task.status}
-        />
-      ))}
+      <div className="list">
+        {tasks.map((task) => (
+          <Task
+            key={task._id}
+            title={task.title}
+            description={task.description}
+            status={task.status}
+            _id={task._id}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
+        ))}
+      </div>
     </div>
   )
 }
