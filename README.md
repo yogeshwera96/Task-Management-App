@@ -2,8 +2,8 @@
 
 ## 🚀 Live Demo
 
-- **Frontend:** [frontend.vercel.app](https://task-management-app-frontend-two.vercel.app/)
-- **Backend:** [backend.onrender.com](https://task-management-app-backend-hs0r.onrender.com/tasks)
+- **Frontend:** [task-management-app-frontend-two.vercel.app](https://task-management-app-frontend-two.vercel.app/)
+- **Backend:** [task-management-app-backend-hs0r.onrender.com/tasks](https://task-management-app-backend-hs0r.onrender.com/tasks)
 
 ## 🌟 Features
 
@@ -28,7 +28,7 @@ git clone https://github.com/yogeshwera96/Task-Management-App
 
 ```
 
-## Backend Setup
+### 2️⃣ Backend Setup
 
 ```bash
 
@@ -38,12 +38,13 @@ npm run dev
 
 ```
 
-### Create a .env file inside backend/ and add:
+#### Create a .env file inside backend/ and add:
 
 MONGO_URI = mongodb+srv://yogeshwera1996:task1234@cluster0.0xgj4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
 PORT = 3001
 
-## Frontend Setup
+### 3️⃣ Frontend Setup
 
 ```bash
 
@@ -62,3 +63,7 @@ npm start
 | GET    | `/tasks?status=pending/completed` | Filter tasks based on status |
 | DELETE | `/tasks/:id`                      | Delete a task                |
 | PATCH  | `/tasks/:id`                      | Mark a task as completed     |
+
+## 🤝 Contributors
+
+Yogeshwera Poorana Lingam - [Github](https://github.com/yogeshwera96)
