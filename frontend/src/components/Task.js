@@ -1,5 +1,5 @@
-import axios from "axios";
-import "../App.css";
+import axios from "axios"
+import "../App.css"
 
 const Task = ({
   title,
@@ -13,34 +13,39 @@ const Task = ({
 }) => {
   async function handleDelete() {
     try {
-      const response = await axios.delete(`http://localhost:3001/tasks/${_id}`);
-      console.log("Task deleted", response.data);
-      setTasks(tasks.filter((task) => task._id !== _id));
-      setNotification({ message: "Task deleted successfully!", type: "delete" });
-      setTimeout(() => setNotification(""), 3000);
+      const response = await axios.delete(
+        `https://task-management-app-backend-hs0r.onrender.com/tasks/${_id}`
+      )
+      console.log("Task deleted", response.data)
+      setTasks(tasks.filter((task) => task._id !== _id))
+      setNotification({ message: "Task deleted successfully!", type: "delete" })
+      setTimeout(() => setNotification(""), 3000)
     } catch (error) {
       console.error(
         "Error deleting task: ",
         error.response?.data || error.message
-      );
+      )
     }
   }
 
   async function markAsComplete() {
     try {
-      await axios.patch(`http://localhost:3001/tasks/${_id}`, {
-        status: "completed",
-      });
+      await axios.patch(
+        `https://task-management-app-backend-hs0r.onrender.com/tasks/${_id}`,
+        {
+          status: "completed",
+        }
+      )
       setTasks(
         tasks.map((task) =>
           task._id === _id ? { ...task, status: "completed" } : task
         )
-      );
+      )
     } catch (error) {
       console.error(
         "Error marking task as complete: ",
         error.response?.data || error.message
-      );
+      )
     }
   }
 
@@ -60,7 +65,7 @@ const Task = ({
         <button onClick={handleDelete}>Delete</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Task;
+export default Task

@@ -22,14 +22,17 @@ function App() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/tasks", {
-        title,
-        description,
-        status,
-      })
+      const response = await axios.post(
+        `https://task-management-app-backend-hs0r.onrender.com/tasks`,
+        {
+          title,
+          description,
+          status,
+        }
+      )
       console.log("Task Created: ", response.data)
       setTasks([...tasks, response.data])
-      setNotification({message: "Task added successfully!", type: "create"})
+      setNotification({ message: "Task added successfully!", type: "create" })
       setTimeout(() => setNotification(""), 3000)
       setTitle("")
       setDescription("")
@@ -45,7 +48,9 @@ function App() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/tasks")
+        const response = await axios.get(
+          `https://task-management-app-backend-hs0r.onrender.com/tasks`
+        )
         console.log(response.data.data)
         setTasks(response.data.data)
         setLoading(false)
@@ -83,7 +88,11 @@ function App() {
           Submit
         </button>
       </form>
-      {notification && <div className={`notification-popup ${notification.type}`}>{notification.message}</div>}
+      {notification && (
+        <div className={`notification-popup ${notification.type}`}>
+          {notification.message}
+        </div>
+      )}
       <h1>Task List</h1>
       <div className="list">
         {tasks.map((task) => (
